@@ -1,111 +1,38 @@
-import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+import * as React from "react";
+import ParticleImage, { Vector, forces } from "react-particle-image";
 
-// A function to create a particle system from an image
-function ImageParticles({ url, width, height }) {
-  // A reference to the mesh object
-  const mesh = useRef();
+const motionForce = (x, y) => {
+  return forces.disturbance(x, y, 5);
+};
 
-  // A state variable to store the particles data
-  const [particles, setParticles] = React.useState([]);
-
-  // A useEffect hook to load the image and create the particles
-  useEffect(() => {
-    // Create a new texture loader
-    const loader = new THREE.TextureLoader();
-
-    // Load the image
-    loader.load(url, (texture) => {
-      // Get the image data from the texture
-      const imageData = texture.image.data;
-
-      // Create an array to store the particles positions
-      const positions = [];
-
-      // Loop through the image pixels
-      for (let i = 0; i < imageData.length; i += 4) {
-        // Get the pixel color
-        const color = new THREE.Color(
-          imageData[i] / 255,
-          imageData[i + 1] / 255,
-          imageData[i + 2] / 255
-        );
-
-        // If the pixel is not transparent
-        if (imageData[i + 3] > 0) {
-          // Get the pixel coordinates
-          const x = (i / 4) % width;
-          const y = Math.floor(i / 4 / width);
-
-          // Push the position and color to the array
-          positions.push(
-            x - width / 2,
-            -y + height / 2,
-            0,
-            color.r,
-            color.g,
-            color.b
-          );
-        }
-      }
-
-      // Set the particles state with the positions array
-      setParticles(positions);
-    });
-  }, [url, width, height]);
-
-  // A useFrame hook to animate the mesh
-  useFrame((state) => {
-    // Rotate the mesh slightly on each frame
-    mesh.current.rotation.x += 0.01;
-    mesh.current.rotation.y += 0.01;
-    mesh.current.rotation.z += 0.01;
-  });
-
-  // Return a points mesh with a buffer geometry and a shader material
+export default function ImageParticles({ url, Logocolor }) {
   return (
-    <points ref={mesh}>
-      <bufferGeometry attach="geometry">
-        <bufferAttribute
-          attachObject={["attributes", "position"]}
-          count={particles.length / 6}
-          array={new Float32Array(particles)}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attachObject={["attributes", "color"]}
-          count={particles.length / 6}
-          array={new Float32Array(particles)}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <shaderMaterial
-        attach="material"
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-      />
-    </points>
+    <ParticleImage
+      src={url}
+      scale={0.5}
+      entropy={20}
+      maxParticles={2000}
+      particleOptions={{
+        filter: ({ x, y, image }) => {
+          // Get pixel
+          const pixel = image.get(x, y);
+          // Make a particle for this pixel if blue > 50 (range 0-255)
+          return pixel.b > 50;
+        },
+        color: ({ x, y, image }) => Logocolor,
+        radius: () => Math.random() * 1.5 + 0.5,
+        mass: () => 40,
+        friction: () => 0.15,
+        initialPosition: ({ canvasDimensions }) => {
+          return new Vector(
+            canvasDimensions.width / 2,
+            canvasDimensions.height / 2
+          );
+        },
+      }}
+      mouseMoveForce={motionForce}
+      touchMoveForce={motionForce}
+      backgroundColor="transparent"
+    />
   );
 }
-
-// The vertex shader code
-const vertexShader = `
-attribute vec3 color;
-varying vec3 vColor;
-void main() {
-  vColor = color;
-  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-  gl_PointSize = 2.0;
-  gl_Position = projectionMatrix * mvPosition;
-}
-`;
-
-// The fragment shader code
-const fragmentShader = `
-uniform sampler2D pointTexture;
-varying vec3 vColor;
-void main() {
-  gl_FragColor = vec4(vColor, 1.0) * texture2D(pointTexture, gl_PointCoord);
-}
-`;

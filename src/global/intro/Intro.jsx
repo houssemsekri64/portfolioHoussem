@@ -1,13 +1,28 @@
 import React from "react";
-import { Box, Typography, duration } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export const Intro = () => {
+  const [display, setDisplay] = useState("block");
+  useEffect(() => {
+    setTimeout(() => {
+      setDisplay("none");
+    }, 8000);
+  }, []);
+
   return (
     <motion.div
       animate={{ scaleY: 0 }}
       transition={{ duration: 0.5, delay: 7 }}
-      style={{ transformOrigin: "top center" }}
+      style={{
+        position: "relative",
+        top: "0",
+        transformOrigin: "top center",
+        display: display,
+        zIndex: 999999,
+      }}
     >
       <Box
         minHeight={"100vh"}
@@ -38,12 +53,7 @@ export const Intro = () => {
               y: { duration: 2 },
             }}
           >
-            <Typography
-              color={"white"}
-              variant="h3"
-              display={"flex"}
-              alignItems={"center"}
-            >
+            <Typography variant="h3" display={"flex"} alignItems={"center"}>
               {" "}
               Hi{" "}
               <motion.span
@@ -67,14 +77,7 @@ export const Intro = () => {
               delay: 2.2,
             }}
           >
-            <Typography
-              color={"white"}
-              variant="h3"
-              display={"flex"}
-              alignItems={"center"}
-            >
-              I'M HOUSSEM SEKRI
-            </Typography>
+            <Typography variant="h3">I'M HOUSSEM SEKRI</Typography>
           </motion.div>
           <motion.div
             style={{ position: "absolute", bottom: "0" }}
@@ -86,13 +89,8 @@ export const Intro = () => {
               delay: 4.4,
             }}
           >
-            <Typography
-              color={"white"}
-              variant="h4"
-              display={"flex"}
-              alignItems={"center"}
-            >
-              FROND END & BACKEND DEVELOPER
+            <Typography variant="h3" textAlign={"center"}>
+              FROND END & BACKEND <br /> DEVELOPER
             </Typography>
           </motion.div>
         </Box>

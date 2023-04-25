@@ -13,7 +13,20 @@ const ThemeProvider = ({ children }) => {
       mode: "dark",
       primary: { ...shades.primary },
     },
+    typography: {
+      subtitle2: {
+        fontFamily: "Courgette",
+      },
+    },
+    components: {
+      MuiTypography: {
+        defaultProps: {
+          color: "text.secondary",
+        },
+      },
+    },
   });
+  console.log(theme.palette);
   return <MuiProvider theme={theme}> {children}</MuiProvider>;
 };
 

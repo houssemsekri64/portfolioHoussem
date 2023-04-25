@@ -1,46 +1,3 @@
-// import * as React from "react";
-// import useWindowSize from "@rooks/use-window-size";
-// import ParticleImage, { Vector, forces } from "react-particle-image";
-
-// const particleOptions = {
-//   filter: ({ x, y, image }) => {
-//     // Get pixel
-//     const pixel = image.get(x, y);
-//     // Make a particle for this pixel if blue > 50 (range 0-255)
-//     return pixel.b > 50;
-//   },
-//   color: ({ x, y, image }) => "white",
-//   radius: () => Math.random() * 1.5 + 0.5,
-//   mass: () => 40,
-//   friction: () => 0.15,
-//   initialPosition: ({ canvasDimensions }) => {
-//     return new Vector(canvasDimensions.width / 2, canvasDimensions.height / 2);
-//   },
-// };
-
-// const motionForce = (x, y) => {
-//   return forces.disturbance(x, y, 5);
-// };
-
-// export default function App() {
-//   const { innerWidth, innerHeight } = useWindowSize();
-
-//   return (
-//     <ParticleImage
-//       src={image}
-//       width={Number(innerWidth)}
-//       height={Number(innerHeight)}
-//       scale={0.4}
-//       entropy={20}
-//       maxParticles={4000}
-//       particleOptions={particleOptions}
-//       mouseMoveForce={motionForce}
-//       touchMoveForce={motionForce}
-//       backgroundColor="#191D1F"
-//     />
-//   );
-// }
-
 import * as THREE from "three";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -97,6 +54,7 @@ function Model({ open, hinge, ...props }) {
       onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
       onPointerOut={(e) => setHovered(false)}
       dispose={null}
+      scale={1.5}
     >
       <three.group rotation-x={hinge} position={[0, -0.04, 0.41]}>
         <group position={[0, 2.96, -0.13]} rotation={[Math.PI / 2, 0, 0]}>
@@ -138,26 +96,18 @@ function Model({ open, hinge, ...props }) {
   );
 }
 
-export default function App() {
+export default function Computer() {
   // This flag controls open state, alternates between true & false
   const [open, setOpen] = useState(true);
   // We turn this into a spring animation that interpolates between 0 and 1
   const props = useSpring({ open: Number(open) });
   return (
-    <web.main
-      style={{ background: props.open.to([0, 1], ["#f0f0f0", "#d25578"]) }}
-    >
-      <web.h1
-        style={{
-          opacity: props.open.to([0, 1], [1, 0]),
-          transform: props.open.to(
-            (o) => `translate3d(-50%,${o * 50 - 100}px,0)`
-          ),
-        }}
+    <web.main>
+      <Canvas
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, -30], fov: 35 }}
+        style={{ width: "90%", height: "500px" }}
       >
-        click
-      </web.h1>
-      <Canvas dpr={[1, 2]} camera={{ position: [0, 0, -30], fov: 35 }}>
         <three.pointLight
           position={[10, 10, 10]}
           intensity={1.5}
@@ -177,13 +127,6 @@ export default function App() {
           </group>
           <Environment preset="city" />
         </Suspense>
-        <ContactShadows
-          position={[0, -4.5, 0]}
-          opacity={0.4}
-          scale={20}
-          blur={1.75}
-          far={4.5}
-        />
       </Canvas>
     </web.main>
   );
