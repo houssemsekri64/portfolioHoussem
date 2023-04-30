@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { getLanguage } from "../../utils/getLanguage";
 import data from "./data";
 
-export default function Skills({ sectionRef }) {
+export default function MySkills({ sectionRef }) {
   const lang = getLanguage();
   return (
     <Container maxWidth="xl" ref={sectionRef}>

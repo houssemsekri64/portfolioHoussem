@@ -4,7 +4,7 @@ import Particules from "./global/particules/Particules";
 import { CssBaseline } from "@mui/material";
 import Navbar from "./global/navbar/Navbar";
 import Hero from "./section/hero/Hero";
-import Skills from "./section/skills/skills";
+import MySkills from "./section/mySkills/Myskills";
 import Project from "./section/project/Project";
 import Experience from "./section/experience/Experience";
 import Contact from "./section/contact/Contact";
@@ -33,7 +33,7 @@ const App = () => {
         scrollToSection={scrollToSection}
       />
       <Hero sectionRef={navigationRefs.hero} />
-      <Skills sectionRef={navigationRefs.skills} />
+      <MySkills sectionRef={navigationRefs.skills} />
       <Project sectionRef={navigationRefs.project} />
       <Experience sectionRef={navigationRefs.experience} />
       <Contact sectionRef={navigationRefs.contact} />
