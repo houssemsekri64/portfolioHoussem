@@ -8,16 +8,12 @@ import { shades } from "../../theme";
 
 const Particules = () => {
   const particlesInit = useCallback(async (engine) => {
-    console.log(engine);
-
     // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(engine);
   }, []);
-  const particlesLoaded = useCallback(async (container) => {
-    await console.log(container);
-  }, []);
+  const particlesLoaded = useCallback(async (container) => {}, []);
 
   return (
     <Box sx={{ position: "relative", zIndex: -1 }}>
@@ -75,14 +71,10 @@ const Particules = () => {
                 default: "bounce",
               },
               random: false,
-              speed: 3,
+              speed: 2,
               straight: false,
             },
             number: {
-              density: {
-                enable: true,
-                area: 1000,
-              },
               value: 20,
             },
             opacity: {

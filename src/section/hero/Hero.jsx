@@ -9,13 +9,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import Computer from "../../components/Computer";
 import ImageParticles from "../../components/ImageParticles";
-import { useTypewriter, Cursor } from "react-simple-typewriter";
-const Hero = () => {
+import { data } from "./data";
+import { getLanguage } from "../../utils/getLanguage";
+const Hero = ({ sectionRef }) => {
   const mobile = useMediaQuery("(min-width:1000px)");
-  console.log(mobile);
+  const lang = getLanguage();
 
   return (
     <Container
+      ref={sectionRef}
       maxWidth="xl"
       sx={{
         display: "grid",
@@ -23,7 +25,6 @@ const Hero = () => {
         height: "calc(100vh - 70px)",
       }}
     >
-      {" "}
       <Box
         sx={{
           marginLeft: { md: "50px", xs: "0" },
@@ -38,7 +39,7 @@ const Hero = () => {
             color={"primary.light"}
             textAlign={{ xs: "center", md: "left" }}
           >
-            Hi there{" "}
+            {data.text1[lang]}
             <motion.span
               role="img"
               aria-label="wave emoji"
@@ -48,7 +49,7 @@ const Hero = () => {
             >
               👋
             </motion.span>{" "}
-            i'm
+            {data.text2[lang]}
           </Typography>
           <Typography
             textAlign={{ xs: "center", md: "left" }}
@@ -65,7 +66,7 @@ const Hero = () => {
               WebkitTextFillColor: "transparent",
             }}
           >
-            Houssem sekri{" "}
+            HOUSSEM SEKRI
           </Typography>
           <Typography
             textAlign={{ xs: "center", md: "left" }}
@@ -74,11 +75,16 @@ const Hero = () => {
             letterSpacing={2}
             fontSize={{ xs: "25px", md: "30px" }}
           >
-            A full stack js developer I make Awesome web App With REACT & NODE
+            {data.text3[lang]}
           </Typography>
           <Box my={2} textAlign={{ xs: "center", md: "left" }}>
-            <Button variant="outlined" color="secondary">
-              Download cv
+            <Button
+              variant="outlined"
+              color="secondary"
+              LinkComponent={"a"}
+              href={data.button[lang].link}
+            >
+              {data.button[lang].text}
             </Button>
           </Box>
           <Box
@@ -95,7 +101,10 @@ const Hero = () => {
               display={"grid"}
               sx={{ placeItems: "center" }}
             >
-              <ImageParticles url={"/2.png"} Logocolor={"#61DBFB"} />
+              <ImageParticles
+                url={"./skills/react.png"}
+                Logocolor={"#61DBFB"}
+              />
             </Box>
             <Box
               width={{ sm: "200px" }}
@@ -104,7 +113,7 @@ const Hero = () => {
               display={"grid"}
               sx={{ placeItems: "center start" }}
             >
-              <ImageParticles url={"/node.png"} Logocolor={"#3c873a"} />
+              <ImageParticles url={"./skills/nd.png"} Logocolor={"#3c873a"} />
             </Box>
           </Box>
         </Box>

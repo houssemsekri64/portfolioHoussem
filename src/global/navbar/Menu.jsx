@@ -6,47 +6,43 @@ import {
   IconButton,
   Stack,
   Typography,
-  styled,
-  useMediaQuery,
 } from "@mui/material";
 import React from "react";
-const StyledButton = styled(Button)((theme) => ({
-  padding: " 5px 25px ",
-  borderRadius: 0,
-  transition: "border-bottom 0.3s",
-  borderBottom: "2px solid transparent",
-  "&:hover": {
-    borderBottom: "2px solid white",
-    background: "none",
-  },
-}));
 
-const MenuList = ({ isNotMobile }) => {
+import { data } from "./data";
+import { getLanguage } from "../../utils/getLanguage";
+const MenuList = ({ isNotMobile, scrollToSection, navigationRefs }) => {
+  const lang = getLanguage();
+
   return (
     <Stack
       direction={!isNotMobile ? "column" : "row"}
-      spacing={!isNotMobile ? 4 : 1}
+      spacing={!isNotMobile ? 4 : 3}
     >
-      <StyledButton variant="text">
-        <Typography>Home</Typography>
-      </StyledButton>
-      <StyledButton variant="link">
-        <Typography> Skills </Typography>
-      </StyledButton>
-      <StyledButton variant="link">
-        <Typography> Project </Typography>
-      </StyledButton>
-      <StyledButton variant="link">
-        <Typography> Educatin & experience </Typography>
-      </StyledButton>
-      <StyledButton variant="link">
-        <Typography> Contact </Typography>
-      </StyledButton>
+      {data.map((el) => (
+        <Button
+          onClick={() => scrollToSection(navigationRefs[el.link])}
+          variant="text"
+          sx={{
+            color: "text.secondary",
+            "&:hover, &:active": {
+              color: "secondary.main",
+            },
+          }}
+        >
+          <Typography sx={{ color: "inherit" }}>{el.text[lang]}</Typography>
+        </Button>
+      ))}
     </Stack>
   );
 };
-const Menu = ({ isNotMobile, menuOpen, setMenuOpen }) => {
-  console.log(menuOpen);
+const Menu = ({
+  isNotMobile,
+  menuOpen,
+  setMenuOpen,
+  scrollToSection,
+  navigationRefs,
+}) => {
   return !isNotMobile ? (
     <>
       <Drawer
@@ -68,7 +64,11 @@ const Menu = ({ isNotMobile, menuOpen, setMenuOpen }) => {
             </IconButton>
           </Box>
           <Box mt={4}>
-            <MenuList isNotMobile={isNotMobile} />
+            <MenuList
+              isNotMobile={isNotMobile}
+              navigationRefs={navigationRefs}
+              scrollToSection={scrollToSection}
+            />
           </Box>
         </Box>
       </Drawer>
@@ -76,7 +76,11 @@ const Menu = ({ isNotMobile, menuOpen, setMenuOpen }) => {
   ) : (
     <>
       {" "}
-      <MenuList isNotMobile={isNotMobile} />
+      <MenuList
+        isNotMobile={isNotMobile}
+        navigationRefs={navigationRefs}
+        scrollToSection={scrollToSection}
+      />
     </>
   );
 };

@@ -26,7 +26,7 @@ const ThemeProvider = ({ children }) => {
       },
     },
   });
-  console.log(theme.palette);
+
   return <MuiProvider theme={theme}> {children}</MuiProvider>;
 };
 

@@ -11,8 +11,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 import Menu from "./Menu";
 import { useState } from "react";
+import userAvatar from "./assets/user.jpg";
+import Language from "./Language";
 
-const Navbar = () => {
+const Navbar = ({ navigationRefs, scrollToSection }) => {
   const isNotMobile = useMediaQuery("(min-width:1000px)");
   const [menuOpen, setMenuOpen] = useState(false);
   return (
@@ -20,7 +22,7 @@ const Navbar = () => {
       position="sticky"
       sx={{
         top: 0,
-        background: "transparent",
+        backgroundColor: "primary.dark",
       }}
       elevation={1}
     >
@@ -40,17 +42,23 @@ const Navbar = () => {
             gap: 2,
           }}
         >
-          <Avatar src="/user.jpg" sx={{ height: "60px", width: "60px" }} />
+          <Avatar src={userAvatar} sx={{ height: "60px", width: "60px" }} />
           <Typography variant="subtitle2" fontSize={"20px"}>
             {" "}
             Houssem{" "}
           </Typography>
         </Box>
-        <Menu
-          isNotMobile={isNotMobile}
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-        />
+
+        <Box sx={{ display: "flex", alignItem: "center" }}>
+          <Menu
+            isNotMobile={isNotMobile}
+            menuOpen={menuOpen}
+            setMenuOpen={setMenuOpen}
+            navigationRefs={navigationRefs}
+            scrollToSection={scrollToSection}
+          />
+          <Language />
+        </Box>
         {!isNotMobile && (
           <Box onClick={() => setMenuOpen(true)}>
             <IconButton>
