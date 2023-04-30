@@ -4,7 +4,7 @@ import React from "react";
 import { getLanguage } from "../../utils/getLanguage";
 import data from "./data";
 
-const Skills = ({ sectionRef }) => {
+export default function Skills({ sectionRef }) {
   const lang = getLanguage();
   return (
     <Container maxWidth="xl" ref={sectionRef}>
@@ -47,6 +47,4 @@ const Skills = ({ sectionRef }) => {
       </Grid>
     </Container>
   );
-};
-
-export default Skills;
+}
