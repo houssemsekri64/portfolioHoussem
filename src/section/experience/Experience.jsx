@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Typography,
@@ -8,7 +9,6 @@ import {
   ListItemText,
   Paper,
 } from "@mui/material";
-import React from "react";
 import { ArrowRight } from "@mui/icons-material";
 import { getLanguage } from "../../utils/getLanguage";
 import data from "./data";

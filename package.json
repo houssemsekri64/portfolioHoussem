@@ -30,10 +30,7 @@
     "rooks": "^7.11.2",
     "three": "^0.151.3",
     "tsparticles": "^2.9.3",
-    "tsparticles-engine": "^2.9.3",
-    "vite-plugin-commonjs": "^0.6.2",
-    "vite-plugin-require": "^1.1.10",
-    "vite-require": "^0.2.3"
+    "tsparticles-engine": "^2.9.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

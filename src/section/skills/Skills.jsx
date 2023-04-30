@@ -1,6 +1,6 @@
+import React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import React from "react";
 import { getLanguage } from "../../utils/getLanguage";
 import data from "./data";
 
