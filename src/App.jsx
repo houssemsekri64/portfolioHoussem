@@ -4,7 +4,7 @@ import Particules from "./global/particules/Particules";
 import { CssBaseline } from "@mui/material";
 import Navbar from "./global/navbar/Navbar";
 import Hero from "./section/hero/Hero";
-import Skills from "./section/skills/skills";
+
 import Project from "./section/project/Project";
 import Experience from "./section/experience/Experience";
 import Contact from "./section/contact/Contact";
