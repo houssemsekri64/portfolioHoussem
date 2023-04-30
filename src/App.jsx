@@ -33,7 +33,7 @@ const App = () => {
         scrollToSection={scrollToSection}
       />
       <Hero sectionRef={navigationRefs.hero} />
-      <Skills sectionRef={navigationRefs.skills} />
+
       <Project sectionRef={navigationRefs.project} />
       <Experience sectionRef={navigationRefs.experience} />
       <Contact sectionRef={navigationRefs.contact} />
