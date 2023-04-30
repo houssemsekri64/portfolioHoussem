@@ -9,7 +9,7 @@ import Project from "./section/project/Project";
 import Experience from "./section/experience/Experience";
 import Contact from "./section/contact/Contact";
 import { useRef } from "react";
-import Footer from "./global/footer/footer";
+import FooterLast from "./global/footerlast/FooterLast";
 
 const App = () => {
   const navigationRefs = {
@@ -38,7 +38,7 @@ const App = () => {
       <Experience sectionRef={navigationRefs.experience} />
       <Contact sectionRef={navigationRefs.contact} />
       <Particules />
-      <Footer />
+      <FooterLast />
     </ThemeProvider>
   );
 };

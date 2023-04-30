@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-export default function Footer() {
+export default function FooterLast() {
   return (
     <Box py={3} textAlign={"center"} mt={19}>
       <Typography fontSize={"17px"}>
