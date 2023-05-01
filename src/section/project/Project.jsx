@@ -8,9 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-
-import "./style.css";
-
 import { getLanguage } from "../../utils/getLanguage";
 import { data } from "./data";
 const Project = ({ sectionRef }) => {
@@ -26,7 +23,7 @@ const Project = ({ sectionRef }) => {
     transform: "translate(-50%, -50%)",
     width: { xs: "90%", md: "1000px" },
     height: { xs: "300px", md: "500px" },
-    bgcolor: "background.paper",
+    bgcolor: "primary.dark",
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
@@ -34,34 +31,66 @@ const Project = ({ sectionRef }) => {
   return (
     <Container maxWidth="xl" sx={{ marginTop: 12 }} ref={sectionRef}>
       <Box textAlign={"center"} mb={20}>
-        <Typography variant="h2" mb={2} color={"primary.light"}>
+        <Typography
+          variant="h2"
+          mb={2}
+          color={"primary.light"}
+          fontSize={"3rem"}
+        >
           {data.text1[lang]}
         </Typography>
       </Box>
       <Grid container spacing={3}>
         {data.projet.map((el, index) => (
-          <Grid item xs="12" md="6" spacing={3} key={`${index}-${el.title}`}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            key={`${index}-${el.title}`}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
             <Paper
-              sx={{ padding: 2, backgroundColor: "primary.dark" }}
+              sx={{
+                padding: 2,
+                backgroundColor: "primary.dark",
+                height: "100%",
+              }}
               elevation={3}
             >
-              <Box sx={{ width: "100%", height: "300px" }}>
+              <Button
+                sx={{ width: "100%", height: { md: "300px", xs: "200px" } }}
+                target="_blank"
+                href={el.btn.demo.link}
+              >
                 <img
                   src={el.img}
                   style={{
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    objectPosition: "top",
+                    objectPosition: "left top",
                   }}
                 />
-              </Box>
+              </Button>
               <Box mt={2}>
-                <Typography variant="h5"> {el.title}</Typography>
-                <Typography paragraph pt={2}>
+                <Typography variant="h5">{el.title}</Typography>
+                <Typography
+                  paragraph
+                  pt={2}
+                  fontSize={{ xs: "0.8rem", md: "0.9rem" }}
+                >
                   {el.text[lang]}
                 </Typography>
-                <Box display="flex" flexDirection={"row"} gap={2}>
+                <Box
+                  display="flex"
+                  flexDirection={"row"}
+                  gap={2}
+                  flexWrap={"wrap"}
+                >
                   {el.btn.video && (
                     <Button
                       variant="outlined"

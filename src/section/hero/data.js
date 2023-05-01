@@ -14,11 +14,11 @@ export const data = {
   button: {
     en: {
       text: "Download cv ",
-      link: " ",
+      link: "https://drive.google.com/file/d/1U3MbFUMV-PYXTmKjgiGt81Fdw_3VmztS/view?usp=sharing",
     },
     fr: {
       text: "télécharger cv",
-      link: "",
+      link: "https://drive.google.com/file/d/1FvW1sB5DsGmtHyXYCaESkiJtPwAxuqC4/view?usp=sharing",
     },
   },
 };

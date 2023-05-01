@@ -83,6 +83,7 @@ const Hero = ({ sectionRef }) => {
               color="secondary"
               LinkComponent={"a"}
               href={data.button[lang].link}
+              target="_blank"
             >
               {data.button[lang].text}
             </Button>

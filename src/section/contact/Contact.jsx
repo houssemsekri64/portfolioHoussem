@@ -83,8 +83,8 @@ const Contact = ({ sectionRef }) => {
   const lang = getLanguage();
   return (
     <Container maxWidth="xl" sx={{ marginTop: 30 }} ref={sectionRef}>
-      <Box textAlign={"center"} mb={10}>
-        <Typography variant="h2" color={"primary.light"}>
+      <Box textAlign={"center"} mb={10} fontSize={"3rem"}>
+        <Typography variant="h2" color={"primary.light"} fontSize={"3rem"}>
           {lang == "fr" ? "Entrer en contact" : "Get In Touch"}
         </Typography>
         <Box
@@ -137,7 +137,7 @@ const Contact = ({ sectionRef }) => {
         >
           <TextField
             color="secondary"
-            label={lang == "fr" ? "nom" : "name"}
+            label={lang == "fr" ? "Nom" : "name"}
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}

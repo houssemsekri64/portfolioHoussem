@@ -31,12 +31,11 @@ const Particules = () => {
           interactivity: {
             events: {
               onClick: {
-                enable: true,
-                mode: "push",
+                enable: false,
               },
               onHover: {
-                enable: true,
-                mode: "repulse",
+                enable: false,
+                mode: "false",
               },
               resize: true,
             },
@@ -75,7 +74,7 @@ const Particules = () => {
               straight: false,
             },
             number: {
-              value: 20,
+              value: 50,
             },
             opacity: {
               value: 0.4,

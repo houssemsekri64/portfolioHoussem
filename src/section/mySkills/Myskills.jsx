@@ -9,7 +9,12 @@ export default function MySkills({ sectionRef }) {
   return (
     <Container maxWidth="xl" ref={sectionRef}>
       <Box textAlign={"center"} mb={10} id="#skills">
-        <Typography variant="h2" mb={2} color={"primary.light"}>
+        <Typography
+          variant="h2"
+          mb={2}
+          color={"primary.light"}
+          fontSize={"3rem"}
+        >
           {data.title1[lang]}
         </Typography>
         <Typography variant="h5" fontWeight={300}>
@@ -31,13 +36,13 @@ export default function MySkills({ sectionRef }) {
                 {el.title}
               </Typography>
               <motion.div
-                animate={{ y: [-5, 0, -5] }}
+                animate={{ y: [-7, 0, -7] }}
                 transition={{ duration: 2.5, repeat: Infinity }}
               >
                 <img
                   src={el.img}
-                  width="100px"
-                  height="100px"
+                  width="65px"
+                  height="65px"
                   style={{ objectFit: "contain", textAlign: "center" }}
                 />
               </motion.div>

@@ -18,7 +18,7 @@ const Experience = ({ sectionRef }) => {
   return (
     <Container maxWidth="xl" sx={{ marginTop: 30 }} ref={sectionRef}>
       <Box textAlign={"center"} mb={10}>
-        <Typography variant="h2" color={"primary.light"}>
+        <Typography variant="h2" color={"primary.light"} fontSize={"3rem"}>
           {data.text[lang]}
         </Typography>
       </Box>
@@ -40,10 +40,14 @@ const Experience = ({ sectionRef }) => {
         <List>
           {data.work[lang].map((el, index) => (
             <ListItem key={`${index}-{data.text}`}>
-              <ListItemIcon>
+              <ListItemIcon sx={{ minWidth: "30px" }}>
                 <ArrowRight />
               </ListItemIcon>
-              <ListItemText inset sx={{ paddingLeft: "0.1rem" }} primary={el} />
+              <ListItemText
+                inset
+                sx={{ paddingLeft: "0.1rem", fontSize: "0.9rem" }}
+                primary={el}
+              />
             </ListItem>
           ))}
         </List>
