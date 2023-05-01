@@ -62,7 +62,11 @@ const Project = ({ sectionRef }) => {
               elevation={3}
             >
               <Button
-                sx={{ width: "100%", height: { md: "300px", xs: "200px" } }}
+                sx={{
+                  width: "100%",
+                  height: { md: "300px", xs: "200px" },
+                  padding: "0",
+                }}
                 target="_blank"
                 href={el.btn.demo.link}
               >

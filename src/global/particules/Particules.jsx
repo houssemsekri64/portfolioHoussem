@@ -3,7 +3,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { shades } from "../../theme";
 
 const Particules = () => {
@@ -14,7 +14,7 @@ const Particules = () => {
     await loadFull(engine);
   }, []);
   const particlesLoaded = useCallback(async (container) => {}, []);
-
+  const notMobile = useMediaQuery("(min-width:1000px)");
   return (
     <Box sx={{ position: "relative", zIndex: -1 }}>
       <Particles
@@ -74,7 +74,7 @@ const Particules = () => {
               straight: false,
             },
             number: {
-              value: 50,
+              value: notMobile ? 40 : 20,
             },
             opacity: {
               value: 0.4,
