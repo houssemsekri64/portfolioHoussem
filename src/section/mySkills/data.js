@@ -37,7 +37,7 @@ const data = {
       img: "./skills/sass.png",
     },
     {
-      title: "React Quert",
+      title: "React Query",
       img: "./skills/reactquery.png",
     },
     {
