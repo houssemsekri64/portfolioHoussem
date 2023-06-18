@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Container,
+  Paper,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -123,7 +124,7 @@ const Hero = ({ sectionRef }) => {
             width={{ sm: "100%", md: "45%" }}
             height={{ sm: "200px", md: "100%" }}
           >
-            <Computer />
+            <img src="1.jpg" width={"100%"} height="auto" />
           </Box>
         )}
       </Box>
